@@ -1,0 +1,5 @@
+:toc: auto
+
+## Introduction
+
+This project is an investigation how to use annif tool and https://huggingface.co/datasets/dreamproit/bill_committees_us[bill_committees_us] dataset.
