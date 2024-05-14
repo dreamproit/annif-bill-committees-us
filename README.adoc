@@ -57,6 +57,7 @@ The Annif configuration file `projects.cfg` defines tree projects, for predictio
 - cm-mllm-en: MLLM (lexical) prediction of legislative subjects
 - cm-parabel-en: Omikuji Parabel prediction of legislative subjects
 - cm-bonsai-en: Omikuji Bonsai prediction of legislative subjects (using ngram=2 and min_df=3 settings for improved accuracy)
+- cm-nn-ensemble-en: Ensemble of the parabel and bonsai models above.
 
 Snowball stemming is used in all six projects. Minimum token size is 3 characters, which is the default for Annif.
 
@@ -87,6 +88,7 @@ annif load-vocab cm committees.csv
 annif train cm-mllm-en committees-train.tsv.gz
 annif train cm-parabel-en committees-train.tsv.gz
 annif train cm-bonsai-en committees-train.tsv.gz
+annif train cm-nn-ensemble-en committees-train.tsv.gz
 ```
 
 NOTE: Commands above can be run inside annif docker container if volume path properly set up.
@@ -201,6 +203,40 @@ Precision@5:                    0.6757
 True positives:                 40058
 False positives:                22577
 False negatives:                10417
+Documents evaluated:            39643
+```
+
+### cm-nn-ensemble-en evalualtion
+
+Command:
+
+`annif eval cm-nn-ensemble-en committees-test.tsv.gz -l 15 -t 0.15`
+
+Results:
+
+```
+Precision (doc avg):            0.6255
+Recall (doc avg):               0.8894
+F1 score (doc avg):             0.7028
+Precision (subj avg):           0.5146
+Recall (subj avg):              0.7702
+F1 score (subj avg):            0.6097
+Precision (weighted subj avg):  0.5699
+Recall (weighted subj avg):     0.8698
+F1 score (weighted subj avg):   0.6853
+Precision (microavg):           0.5558
+Recall (microavg):              0.8698
+F1 score (microavg):            0.6782
+F1@5:                           0.7028
+NDCG:                           0.8172
+NDCG@5:                         0.8171
+NDCG@10:                        0.8172
+Precision@1:                    0.7108
+Precision@3:                    0.6306
+Precision@5:                    0.6264
+True positives:                 43905
+False positives:                35092
+False negatives:                6570
 Documents evaluated:            39643
 ```
 
