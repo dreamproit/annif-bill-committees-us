@@ -3,3 +3,267 @@
 ## Introduction
 
 This project is an investigation how to use annif tool and https://huggingface.co/datasets/dreamproit/bill_committees_us[bill_committees_us] dataset.
+
+## Installation and setup
+
+To use, install the project's virtual environment, dependencies and set environment variables.
+
+### Prerequisites
+
+- Python 3.11
+- https://www.linuxcapable.com/how-to-install-python-3-11-on-ubuntu-linux/[python3.11-venv]
+
+### Install virtual environment package
+
+For example:
+
+```bash
+apt install python3.11-venv
+```
+
+### Create virtual environment
+
+```bash
+python3 -m venv annif_bill_committees_venv
+```
+
+### Activate virtual environment
+
+```bash
+. annif_bill_committees_venv/bin/activate
+```
+
+### Install dependencies
+
+```bash
+pip install --upgrade pip; pip install -r requirements.txt
+```
+
+
+## Data preparation
+
+The Jupyter notebook `dataset-to-corpus.ipynb` loads the original data set directly from Hugging Face Hub using the datasets library and then converts it into corpus files in a format suitable for Annif. The original data set is also split into 90% train / 10% test subsets. The notebook will produce the following files:
+
+- committees.csv: the 38 committees as an Annif vocabulary in CSV format
+- committees-train.tsv.gz: train set for the policy area prediction task (92499 examples)
+- committees-test.tsv.gz: test set for the policy area prediction task (39643 examples)
+
+(The train and test sets are not included in this repository because they take up around 670MB, which is too big for plain git without LFS.)
+
+## Annif projects
+
+The Annif configuration file `projects.cfg` defines tree projects, for prediction task:
+
+- cm-mllm-en: MLLM (lexical) prediction of legislative subjects
+- cm-parabel-en: Omikuji Parabel prediction of legislative subjects
+- cm-bonsai-en: Omikuji Bonsai prediction of legislative subjects (using ngram=2 and min_df=3 settings for improved accuracy)
+- cm-nn-ensemble-en: Ensemble of the parabel and bonsai models above.
+
+Snowball stemming is used in all six projects. Minimum token size is 3 characters, which is the default for Annif.
+
+## Running Annif docker setup
+
+To run interactive bash inside the annif container use following command:
+
+```bash
+docker run \
+    -v /your/absolute/path/to/this/repo/annif-bill-committees-us:/annif-projects \
+    -u $(id -u):$(id -g) \
+    -it quay.io/natlibfi/annif bash
+```
+
+NOTE: For proper usage of the container the absolute path to this project repo must be provided!
+
+## Training Annif
+
+To learn how to install and use Annif, see the https://github.com/NatLibFi/Annif[Annif GitHub repository]
+and the https://github.com/NatLibFi/Annif-tutorial[Annif tutorial].
+
+Here are the commands used to train the models:
+
+```bash
+# load the committees vocabulary
+annif load-vocab cm committees.csv
+# train the committees models
+annif train cm-mllm-en committees-train.tsv.gz
+annif train cm-parabel-en committees-train.tsv.gz
+annif train cm-bonsai-en committees-train.tsv.gz
+annif train cm-nn-ensemble-en committees-train.tsv.gz
+```
+
+NOTE: Commands above can be run inside annif docker container if volume path properly set up.
+
+## Evaluation
+
+The projects were evaluated using the `annif eval` command against the test
+set records. The committeesprojects were additionally evaluated
+using the `annif optimize` command to find out the `limit` and `threshold`
+parameters that maximize the F1 score. The precision and recall have been
+reported using the same values for `limit` and `threshold`. The size of the
+model files on disk are also reported. The RAM requirements for running the
+models are somewhat more than the file sizes, but they correlate.
+
+### cm-mllm-en evalualtion
+
+Command:
+
+`annif eval cm-mllm-en committees-test.tsv.gz -l 15 -t 0.15`
+
+Results:
+
+```
+Precision (doc avg):            0.0847
+Recall (doc avg):               0.1308
+F1 score (doc avg):             0.0946
+Precision (subj avg):           0.3709
+Recall (subj avg):              0.1948
+F1 score (subj avg):            0.2339
+Precision (weighted subj avg):  0.4391
+Recall (weighted subj avg):     0.1379
+F1 score (weighted subj avg):   0.1929
+Precision (microavg):           0.4144
+Recall (microavg):              0.1379
+F1 score (microavg):            0.2070
+F1@5:                           0.0949
+NDCG:                           0.1165
+NDCG@5:                         0.1164
+NDCG@10:                        0.1165
+Precision@1:                    0.1018
+Precision@3:                    0.0869
+Precision@5:                    0.0852
+True positives:                 6963
+False positives:                9838
+False negatives:                43512
+Documents evaluated:            39643
+```
+
+### cm-parabel-en evalualtion
+
+Command:
+
+`annif eval cm-parabel-en committees-test.tsv.gz -l 15 -t 0.15`
+
+Results:
+
+```
+Precision (doc avg):            0.0847
+Precision (doc avg):            0.6351
+Recall (doc avg):               0.7844
+F1 score (doc avg):             0.6733
+Precision (subj avg):           0.5409
+Recall (subj avg):              0.6316
+F1 score (subj avg):            0.5799
+Precision (weighted subj avg):  0.6163
+Recall (weighted subj avg):     0.7517
+F1 score (weighted subj avg):   0.6756
+Precision (microavg):           0.6082
+Recall (microavg):              0.7517
+F1 score (microavg):            0.6724
+F1@5:                           0.6732
+NDCG:                           0.7376
+NDCG@5:                         0.7382
+NDCG@10:                        0.7377
+Precision@1:                    0.6756
+Precision@3:                    0.6356
+Precision@5:                    0.6351
+True positives:                 37941
+False positives:                24439
+False negatives:                12534
+Documents evaluated:            39643
+```
+
+### cm-bonsai-en evalualtion
+
+Command:
+
+`annif eval cm-bonsai-en committees-test.tsv.gz -l 15 -t 0.15`
+
+Results:
+
+```
+Precision (doc avg):            0.6756
+Recall (doc avg):               0.8179
+F1 score (doc avg):             0.7141
+Precision (subj avg):           0.5893
+Recall (subj avg):              0.6738
+F1 score (subj avg):            0.6204
+Precision (weighted subj avg):  0.6485
+Recall (weighted subj avg):     0.7936
+F1 score (weighted subj avg):   0.7120
+Precision (microavg):           0.6395
+Recall (microavg):              0.7936
+F1 score (microavg):            0.7083
+F1@5:                           0.7138
+NDCG:                           0.7730
+NDCG@5:                         0.7734
+NDCG@10:                        0.7730
+Precision@1:                    0.7103
+Precision@3:                    0.6762
+Precision@5:                    0.6757
+True positives:                 40058
+False positives:                22577
+False negatives:                10417
+Documents evaluated:            39643
+```
+
+### cm-nn-ensemble-en evalualtion
+
+Command:
+
+`annif eval cm-nn-ensemble-en committees-test.tsv.gz -l 15 -t 0.15`
+
+Results:
+
+```
+Precision (doc avg):            0.6255
+Recall (doc avg):               0.8894
+F1 score (doc avg):             0.7028
+Precision (subj avg):           0.5146
+Recall (subj avg):              0.7702
+F1 score (subj avg):            0.6097
+Precision (weighted subj avg):  0.5699
+Recall (weighted subj avg):     0.8698
+F1 score (weighted subj avg):   0.6853
+Precision (microavg):           0.5558
+Recall (microavg):              0.8698
+F1 score (microavg):            0.6782
+F1@5:                           0.7028
+NDCG:                           0.8172
+NDCG@5:                         0.8171
+NDCG@10:                        0.8172
+Precision@1:                    0.7108
+Precision@3:                    0.6306
+Precision@5:                    0.6264
+True positives:                 43905
+False positives:                35092
+False negatives:                6570
+Documents evaluated:            39643
+```
+
+## Running annif web server
+
+You can avoid training models before running annif web server by using the pre-trained models provided in https://drive.google.com/drive/folders/1kw1S0xRG7okw1EYuwk_htwhhNpk79Ivg?usp=sharing[Google Drive]. Download `data` folder and put it in the root of this project this will be enough to run annif web server with current `projects.cfg` configuration.
+
+### Run annif container with exposed port
+
+To run annif docker container with exposed port 5555 use following command:
+
+```bash
+docker run \
+    -v /your/absolute/path/to/this/repo/annif-bill-committees-us:/annif-projects \
+    -u $(id -u):$(id -g) \
+    -p 5555:5555
+    -it quay.io/natlibfi/annif bash
+```
+
+### Start annif web server
+
+To start annif web server use following command inside the interactive bash inside annif container:
+
+```bash
+uvicorn annif:create_app --host 0.0.0.0 --port 5555
+```
+
+### Access annif web server
+
+Visit http://localhost:5555/ in your browser to access annif web server.
