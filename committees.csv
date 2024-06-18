@@ -1,39 +1,39 @@
 uri,label_en
-https://www.congress.gov/committees1,Aging (Special) Committee
-https://www.congress.gov/committees2,Agriculture Committee
-https://www.congress.gov/committees3,"Agriculture, Nutrition, and Forestry Committee"
-https://www.congress.gov/committees4,Appropriations Committee
-https://www.congress.gov/committees5,Armed Services Committee
-https://www.congress.gov/committees6,"Banking, Housing, and Urban Affairs Committee"
-https://www.congress.gov/committees7,Budget Committee
-https://www.congress.gov/committees8,"Commerce, Science, and Transportation Committee"
-https://www.congress.gov/committees9,Commission on Security and Cooperation in Europe (U.S. Helsinki Commission)
-https://www.congress.gov/committees10,Committee on House Administration
-https://www.congress.gov/committees11,Education and the Workforce Committee
-https://www.congress.gov/committees12,Energy and Commerce Committee
-https://www.congress.gov/committees13,Energy and Natural Resources Committee
-https://www.congress.gov/committees14,Environment and Public Works Committee
-https://www.congress.gov/committees15,Ethics (Select) Committee
-https://www.congress.gov/committees16,Ethics Committee
-https://www.congress.gov/committees17,Finance Committee
-https://www.congress.gov/committees18,Financial Services Committee
-https://www.congress.gov/committees19,Foreign Affairs Committee
-https://www.congress.gov/committees20,Foreign Relations Committee
-https://www.congress.gov/committees21,"Health, Education, Labor, and Pensions Committee"
-https://www.congress.gov/committees22,Homeland Security Committee
-https://www.congress.gov/committees23,Homeland Security and Governmental Affairs Committee
-https://www.congress.gov/committees24,Indian Affairs Committee
-https://www.congress.gov/committees25,Intelligence (Permanent Select) Committee
-https://www.congress.gov/committees26,Intelligence (Select) Committee
-https://www.congress.gov/committees27,Judiciary Committee
-https://www.congress.gov/committees28,Natural Resources Committee
-https://www.congress.gov/committees29,Oversight and Accountability Committee
-https://www.congress.gov/committees30,Rules Committee
-https://www.congress.gov/committees31,Rules and Administration Committee
-https://www.congress.gov/committees32,"Science, Space, and Technology Committee"
-https://www.congress.gov/committees33,Small Business Committee
-https://www.congress.gov/committees34,Small Business and Entrepreneurship Committee
-https://www.congress.gov/committees35,Transportation and Infrastructure Committee
-https://www.congress.gov/committees36,United States Senate Caucus on International Narcotics Control
-https://www.congress.gov/committees37,Veterans' Affairs Committee
-https://www.congress.gov/committees38,Ways and Means Committee
+https://www.congress.gov/committee/senate-aging-special/spag00,Aging (Special) Committee
+https://www.congress.gov/committee/house-agriculture/hsag00,Agriculture Committee
+https://www.congress.gov/committee/senate-agriculture-nutrition-and-forestry/ssaf00,"Agriculture, Nutrition, and Forestry Committee"
+https://www.congress.gov/committee/house-appropriations/hsap00,Appropriations Committee
+https://www.congress.gov/committee/house-armed-services/hsas00,Armed Services Committee
+https://www.congress.gov/committee/senate-banking-housing-and-urban-affairs/ssbk00,"Banking, Housing, and Urban Affairs Committee"
+https://www.congress.gov/committee/house-budget/hsbu00,Budget Committee
+https://www.congress.gov/committee/senate-commerce-science-and-transportation/sscm00,"Commerce, Science, and Transportation Committee"
+https://www.congress.gov/committee/the-helsinki-commission/jcse00,Commission on Security and Cooperation in Europe (U.S. Helsinki Commission)
+https://www.congress.gov/committee/committee-on-house-administration/hsha00,Committee on House Administration
+https://www.congress.gov/committee/house-education-and-the-workforce/hsed00,Education and the Workforce Committee
+https://www.congress.gov/committee/house-energy-and-commerce/hsif00,Energy and Commerce Committee
+https://www.congress.gov/committee/senate-energy-and-natural-resources/sseg00,Energy and Natural Resources Committee
+https://www.congress.gov/committee/senate-environment-and-public-works/ssev00,Environment and Public Works Committee
+https://www.congress.gov/committee/senate-ethics-select/slet00,Ethics (Select) Committee
+https://www.congress.gov/committee/house-ethics/hsso00,Ethics Committee
+https://www.congress.gov/committee/senate-finance/ssfi00,Finance Committee
+https://www.congress.gov/committee/house-financial-services/hsba00,Financial Services Committee
+https://www.congress.gov/committee/house-foreign-affairs/hsfa00,Foreign Affairs Committee
+https://www.congress.gov/committee/senate-foreign-relations/ssfr00,Foreign Relations Committee
+https://www.congress.gov/committee/senate-health-education-labor-and-pensions/sshr00,"Health, Education, Labor, and Pensions Committee"
+https://www.congress.gov/committee/house-homeland-security/hshm00,Homeland Security Committee
+https://www.congress.gov/committee/senate-homeland-security-and-governmental-affairs/ssga00,Homeland Security and Governmental Affairs Committee
+https://www.congress.gov/committee/senate-indian-affairs/slia00,Indian Affairs Committee
+https://www.congress.gov/committee/senate-intelligence-select/slin00,Intelligence (Permanent Select) Committee
+https://www.congress.gov/committee/senate-intelligence-select/slin00,Intelligence (Select) Committee
+https://www.congress.gov/committee/house-judiciary/hsju00,Judiciary Committee
+https://www.congress.gov/committee/house-natural-resources/hsii00,Natural Resources Committee
+https://www.congress.gov/committee/house-oversight-and-accountability/hsgo00,Oversight and Accountability Committee
+https://www.congress.gov/committee/house-rules/hsru00,Rules Committee
+https://www.congress.gov/committee/senate-rules-and-administration/ssra00,Rules and Administration Committee
+https://www.congress.gov/committee/house-science-space-and-technology/hssy00,"Science, Space, and Technology Committee"
+https://www.congress.gov/committee/house-small-business/hssm00,Small Business Committee
+https://www.congress.gov/committee/senate-small-business-and-entrepreneurship/sssb00,Small Business and Entrepreneurship Committee
+https://www.congress.gov/committee/house-transportation-and-infrastructure/hspw00,Transportation and Infrastructure Committee
+https://www.congress.gov/committee/senate-caucus-on-international-narcotics-control/scnc00,United States Senate Caucus on International Narcotics Control
+https://www.congress.gov/committee/house-veterans-affairs/hsvr00,Veterans' Affairs Committee
+https://www.congress.gov/committee/house-ways-and-means/hswm00,Ways and Means Committee
