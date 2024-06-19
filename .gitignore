@@ -34,4 +34,12 @@ Thumbs.db
 
 # Local stuff
 annif_bill_committees_venv
+data
 *.gz
+.env
+!archives/.gitkeep
+archives/*
+*.zip
+*.json
+!.streamlit/.gitkeep
+.streamlit/secrets.toml
