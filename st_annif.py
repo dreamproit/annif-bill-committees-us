@@ -5,6 +5,7 @@ import pandas as pd
 import numpy as np
 from annif import rest, create_flask_app
 import pathlib
+import nltk
 sys.path.append(os.getcwd())  # noqa: E402
 from cli.gc_move_data import gc_move_data, get_st_gcs_secrets
 
@@ -40,6 +41,7 @@ def main():
             bucket_name=gcs_secrets['project_id'],
             archive=True
         )
+    nltk.download('punkt')
     if not "valid_inputs_received" in st.session_state:
         st.session_state["valid_inputs_received"] = False
 
