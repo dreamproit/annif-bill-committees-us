@@ -19,8 +19,13 @@ def zipdir(path, ziph):
                                        os.path.join(path, '..')))
 
 
-def create_cloud_client_with_streamlit():
+def get_st_gcs_secrets():
     gcs_secrets_dict = st.secrets['connections']['gcs']
+    return gcs_secrets_dict
+
+
+def create_cloud_client_with_streamlit():
+    gcs_secrets_dict = get_st_gcs_secrets()
     client = storage.Client.from_service_account_info(gcs_secrets_dict)
     return client
 
@@ -60,9 +65,8 @@ def upload_data(source, project_id: str, bucket_name: str, creds_file_path: str,
 def download_from_gc(project_id: str, bucket_name: str, creds_file_path: str, destination:str = './'):
     cloud_storage_client = create_cloud_client_with_streamlit()
     bucket = cloud_storage_client.get_bucket(bucket_name)
-    blobs = bucket.list_blobs()
     latest_blob = None
-    sorted_blobs = sorted(blobs, key=lambda blob: blob.time_created)
+    sorted_blobs = sorted(bucket.list_blobs(), key=lambda blob: blob.time_created)
     for blob in sorted_blobs:
         latest_blob = blob
     if not latest_blob:
@@ -77,10 +81,18 @@ def download_from_gc(project_id: str, bucket_name: str, creds_file_path: str, de
 def download_data(project_id: str, bucket_name: str, creds_file_path: str, archive: bool, destination):
     dowloaded_filename = download_from_gc(project_id, bucket_name, creds_file_path, destination)
     if archive:
-        # archive_file_path = pathlib.Path(destination)
         with zipfile.ZipFile(dowloaded_filename, 'r') as zip_ref:
             zip_ref.extractall(destination)
         print(f"Extracted {dowloaded_filename} to {destination}.")
+
+
+def gc_move_data(mode: str, source: str = './data', destination: str = './', project_id: str = None, bucket_name: str = None, creds_file_path: str = None, archive: bool = True):
+    if mode == 'upload':
+        upload_data(source, project_id, bucket_name, creds_file_path, archive)
+    elif mode == 'download':
+        download_data(project_id, bucket_name, creds_file_path, archive, destination)
+    else:
+        print(f"Invalid mode: {mode}")
 
 
 @click.command()
@@ -93,12 +105,11 @@ def download_data(project_id: str, bucket_name: str, creds_file_path: str, archi
 @click.option('--archive', 'archive', help='Whether to archive the data.', default=False, is_flag=True)
 def main(mode: str, source: str, destination: str, project_id: str, bucket_name: str, creds_file_path: str, archive: bool):
     """Move data from local to google cloud storage or vice versa."""
-    if mode == 'upload':
-        upload_data(source, project_id, bucket_name, creds_file_path, archive)
-    elif mode == 'download':
-        download_data(project_id, bucket_name, creds_file_path, archive, destination)
-    else:
-        print(f"Invalid mode: {mode}")
+    try:
+        gc_move_data(mode, source, destination, project_id, bucket_name, creds_file_path, archive)
+    except Exception as e:
+        print(f"Error: {e}")
+        raise e
 
 
 if __name__ == '__main__':

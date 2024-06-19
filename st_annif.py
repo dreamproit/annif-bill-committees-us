@@ -1,7 +1,12 @@
+import os
+import sys
 import streamlit as st
 import pandas as pd
 import numpy as np
 from annif import rest, create_flask_app
+import pathlib
+sys.path.append(os.getcwd())  # noqa: E402
+from cli.gc_move_data import gc_move_data, get_st_gcs_secrets
 
 
 def list_annif_projects():
@@ -24,20 +29,28 @@ def run_annif_suggest(model_name, input_text):
     return results
 
 
-models = get_annif_projects()
-
-
 def main():
+    ANNIF_DATA_FOLDER_PATH = './data'
+    annif_data_filepath = pathlib.Path(ANNIF_DATA_FOLDER_PATH)
+    if not annif_data_filepath.exists():
+        gcs_secrets = get_st_gcs_secrets()
+        gc_move_data(
+            mode='download',
+            destination='./',
+            bucket_name=gcs_secrets['project_id'],
+            archive=True
+        )
     if not "valid_inputs_received" in st.session_state:
         st.session_state["valid_inputs_received"] = False
 
     st.set_page_config(
         layout="centered", page_title="US Congress Bill's committees suggester.", page_icon=":)"
     )
-    st.title("US Congress bill's text committees suggester")
+    original_title = "<p style='font-family:Courier; color:Black; font-size: 20px;'>US Congress bill's text committees suggester</p>"
+    st.markdown(original_title, unsafe_allow_html=True)
     selected_model = st.selectbox(
         "Please select annif model:",
-        models,
+        get_annif_projects(),
         index=2,
         disabled=True,
     )
