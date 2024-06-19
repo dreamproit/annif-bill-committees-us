@@ -46,14 +46,14 @@ def main():
         st.session_state["valid_inputs_received"] = False
 
     st.set_page_config(
-        layout="centered", page_title="US Congress Bill's committees suggester.", page_icon=":)"
+        layout="centered", page_title="US Congress Bill's committees suggester.", page_icon="📚"
     )
     original_title = "<p style='font-family:Courier; color:Black; font-size: 20px;'>US Congress bill's text committees suggester</p>"
     st.markdown(original_title, unsafe_allow_html=True)
     # models = get_annif_projects()
     models = ['cm-mllm-en', 'cm-parabel-en', 'cm-bonsai-en', 'cm-nn-ensemble-en']
     selected_model = st.selectbox(
-        "Please select annif model:",
+        "Please select model:",
         models,
         index=2,
         disabled=True,
@@ -63,7 +63,9 @@ def main():
     st.markdown(
         f"""
 
-    Classify Bill's committees using the Annif model: "{selected_model}" trained on the US Congress dataset.
+    Classify Bill's committees using the model: "{selected_model}" trained on the US Congress dataset.
+
+    ⚠️ Please note that long bill's text(more than ~40 pdf pages) may take a lot of resources and cause the app to restart.
 
     """
     )

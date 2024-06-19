@@ -2,10 +2,13 @@ uri,label_en
 https://www.congress.gov/committee/senate-aging-special/spag00,Aging (Special) Committee
 https://www.congress.gov/committee/house-agriculture/hsag00,Agriculture Committee
 https://www.congress.gov/committee/senate-agriculture-nutrition-and-forestry/ssaf00,"Agriculture, Nutrition, and Forestry Committee"
-https://www.congress.gov/committee/house-appropriations/hsap00,Appropriations Committee
-https://www.congress.gov/committee/house-armed-services/hsas00,Armed Services Committee
+https://www.congress.gov/committee/house-appropriations/hsap00,Appropriations Committee (House)
+https://www.congress.gov/committee/senate-appropriations/ssap00,Appropriations Committee (Senate)
+https://www.congress.gov/committee/house-armed-services/hsas00,Armed Services Committee (House)
+https://www.congress.gov/committee/senate-armed-services/ssas00,Armed Services Committee (Senate)
 https://www.congress.gov/committee/senate-banking-housing-and-urban-affairs/ssbk00,"Banking, Housing, and Urban Affairs Committee"
-https://www.congress.gov/committee/house-budget/hsbu00,Budget Committee
+https://www.congress.gov/committee/house-budget/hsbu00,Budget Committee (House)
+https://www.congress.gov/committee/senate-budget/ssbu00,Budget Committee (Senate)
 https://www.congress.gov/committee/senate-commerce-science-and-transportation/sscm00,"Commerce, Science, and Transportation Committee"
 https://www.congress.gov/committee/the-helsinki-commission/jcse00,Commission on Security and Cooperation in Europe (U.S. Helsinki Commission)
 https://www.congress.gov/committee/committee-on-house-administration/hsha00,Committee on House Administration
@@ -25,7 +28,8 @@ https://www.congress.gov/committee/senate-homeland-security-and-governmental-aff
 https://www.congress.gov/committee/senate-indian-affairs/slia00,Indian Affairs Committee
 https://www.congress.gov/committee/senate-intelligence-select/slin00,Intelligence (Permanent Select) Committee
 https://www.congress.gov/committee/senate-intelligence-select/slin00,Intelligence (Select) Committee
-https://www.congress.gov/committee/house-judiciary/hsju00,Judiciary Committee
+https://www.congress.gov/committee/house-judiciary/hsju00,Judiciary Committee (House)
+https://www.congress.gov/committee/senate-judiciary/ssju00,Judiciary Committee (Senate)
 https://www.congress.gov/committee/house-natural-resources/hsii00,Natural Resources Committee
 https://www.congress.gov/committee/house-oversight-and-accountability/hsgo00,Oversight and Accountability Committee
 https://www.congress.gov/committee/house-rules/hsru00,Rules Committee
@@ -35,5 +39,6 @@ https://www.congress.gov/committee/house-small-business/hssm00,Small Business Co
 https://www.congress.gov/committee/senate-small-business-and-entrepreneurship/sssb00,Small Business and Entrepreneurship Committee
 https://www.congress.gov/committee/house-transportation-and-infrastructure/hspw00,Transportation and Infrastructure Committee
 https://www.congress.gov/committee/senate-caucus-on-international-narcotics-control/scnc00,United States Senate Caucus on International Narcotics Control
-https://www.congress.gov/committee/house-veterans-affairs/hsvr00,Veterans' Affairs Committee
+https://www.congress.gov/committee/house-veterans-affairs/hsvr00,Veterans' Affairs Committee (House)
+https://www.congress.gov/committee/senate-veterans-affairs/ssva00,Veterans' Affairs Committee (Senate)
 https://www.congress.gov/committee/house-ways-and-means/hswm00,Ways and Means Committee

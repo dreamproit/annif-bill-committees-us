@@ -58,7 +58,6 @@ def upload_data(source, project_id: str, bucket_name: str, creds_file_path: str,
         to_upload_filepath = archive_data(source)
     else:
         to_upload_filepath = source
-    to_upload_filepath = './archives/2024-06-18_17-48-59_data.zip'
     upload_to_gc(to_upload_filepath, project_id, bucket_name, creds_file_path)
 
 
