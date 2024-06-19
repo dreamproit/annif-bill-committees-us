@@ -50,9 +50,11 @@ def main():
     )
     original_title = "<p style='font-family:Courier; color:Black; font-size: 20px;'>US Congress bill's text committees suggester</p>"
     st.markdown(original_title, unsafe_allow_html=True)
+    # models = get_annif_projects()
+    models = ['cm-mllm-en', 'cm-parabel-en', 'cm-bonsai-en', 'cm-nn-ensemble-en']
     selected_model = st.selectbox(
         "Please select annif model:",
-        get_annif_projects(),
+        models,
         index=2,
         disabled=True,
     )
