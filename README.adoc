@@ -267,3 +267,45 @@ uvicorn annif:create_app --host 0.0.0.0 --port 5555
 ### Access annif web server
 
 Visit http://localhost:5555/ in your browser to access annif web server.
+
+## Streamlit app setup
+
+We can use streamlit to create a web app to inference the annif models. This setup would allow us to deploy the app in streamlit cloud. https://suggest-bill-committees-us.streamlit.app/[Here] is an example of the app deployed in streamlit cloud.
+
+### Streamlit app usage
+
+To run inference on annif models using streamlit app add the whole bill's text in the text area and click on the Submit button. Wait for the app to process(usually takes under a minute) and the app will display the predicted committees, their scores and urls to the committees.
+
+Currently the app predicts top 10 committees for the given bill text. The goal to have correct committees in top 5 predictions.
+
+### Deployed in Streamlit cloud app's limitations
+
+The app deployed in streamlit cloud has few limitations:
+
+- Cold start time may take up to 5 minutes. So if app is "Running" please be patient and wait for the app to load.
+- Due to the streamlit cloud's limitations the app can relayibly process small-mid size bills(under 100 pdf pages). The processing of a large bill(~1000 pages) may cause the app to crash and reload.
+- The number of simultaneous bill's text processing also a performance factor so it's better to process one bill at a time.
+
+### Streamlit app local setup
+
+To run the streamlit app locally a `secrets.toml` file must be created in the `.streamlit` folder in the root of the project. The `secrets.toml` file should contain the following chapter for google cloud storage access:
+
+```toml
+[connections.gcs]
+type = "service_account"
+project_id = "your-project-id"
+private_key_id = "your-private-key-id"
+private_key = "your-private-key"
+client_email = "your-client-email"
+client_id = "your-client-id"
+auth_uri = "your-auth-uri"
+token_uri = "your-token-uri"
+auth_provider_x509_cert_url = "your-auth-provider-x509-cert-url"
+client_x509_cert_url = "your-client-x509-cert-url"
+```
+
+The information required for the `[connections.gcs]` section can be found in the google cloud storage service account key json file.
+
+### Streamlit app cloud setup
+
+To deploy the streamlit app in streamlit cloud follow the instructions in the https://docs.streamlit.io/deploy/streamlit-community-cloud/deploy-your-app[streamlit cloud documentation]. The app will require the content of the `secrets.toml` file to be added in the streamlit cloud's secrets section.
