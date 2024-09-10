@@ -13,32 +13,40 @@ To use, install the project's virtual environment, dependencies and set environm
 - Python 3.11
 - https://www.linuxcapable.com/how-to-install-python-3-11-on-ubuntu-linux/[python3.11-venv]
 
+```bash
+pyenv install 3.11
+```
+
+```bash
+pyenv local 3.11
+```
+
 ### Install virtual environment package
 
 For example:
 
 ```bash
-apt install python3.11-venv
+sudo apt install pipx
+pipx ensurepath
 ```
 
 ### Create virtual environment
 
 ```bash
-python3 -m venv annif_bill_committees_venv
+pipx install poetry
 ```
 
 ### Activate virtual environment
 
 ```bash
-. annif_bill_committees_venv/bin/activate
+poetry shell
 ```
 
 ### Install dependencies
 
 ```bash
-pip install --upgrade pip; pip install -r requirements.txt
+poetry install
 ```
-
 
 ## Data preparation
 
@@ -239,6 +247,10 @@ False positives:                35092
 False negatives:                6570
 Documents evaluated:            39643
 ```
+
+### Chronological bill-committees-us dataset
+
+The results of training models on the chronological bill-committees-us dataset are present in `annif_bill-committees-us_chrono.ipynb` notebook.
 
 ## Running annif web server
 

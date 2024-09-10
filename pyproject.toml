@@ -1,0 +1,53 @@
+[tool.poetry]
+name = "annif-bill-committees-us"
+version = "0.0.1"
+description = "Investigating project for the Annif tool for bill committees us dataset."
+authors = [
+    "Andrii Kovalov <jfkwww1@gmail.com>",
+    "Alex Boiko <django.develop@gmail.com>",
+    "Ari Hershowitz <arihershowitz@dreamproit.com>",
+]
+readme = "README.adoc"
+
+[tool.poetry.dependencies]
+python = "3.10.12"
+click = "^8.1.7"
+flake8 = "^7.0.0"
+isort = "^5.13.2"
+black = "^24.4.2"
+Flake8-pyproject = "^1.2.3"
+ipykernel = "^6.29.5"
+jupyter = "^1.1.1"
+streamlit = "^1.35.0"
+annif = {extras = ["nn", "omikuji", "fasttext", "yake", "stwfsa"], version = "1.1.0"}
+tensorflow-cpu = "2.15.0"
+gcsfs = "2023.6.0"  # Downgrade to a compatible version
+st-files-connection = "^0.1.0"
+google-cloud-storage = "^2.17.0"
+datasets = "^2.19.0"
+fsspec = "2023.6.0"  # Pin a compatible version of fsspec
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.4.6"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.flake8]
+max-line-length = 120
+exclude = [".git"]
+extend-ignore = ["E203", "E503", "E504", "E402"]
+
+[tool.black]
+line_length=120
+skip-string-normalization = true
+
+[tool.isort]
+profile = "black"
+multi_line_output=3
+indent='    '
+line_length=120
+from_first = "True"
+sections = ["FUTURE", "STDLIB", "THIRDPARTY", "FIRSTPARTY"]
+include_trailing_comma = "True"
