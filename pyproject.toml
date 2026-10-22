@@ -10,11 +10,11 @@ authors = [
 readme = "README.adoc"
 
 [tool.poetry.dependencies]
-python = "3.10.12"
+python = "~3.10"
 click = "^8.1.7"
 flake8 = "^7.0.0"
 isort = "^5.13.2"
-black = "^24.4.2"
+black = "^26.10.1"
 Flake8-pyproject = "^1.2.3"
 ipykernel = "^6.29.5"
 jupyter = "^1.1.1"
