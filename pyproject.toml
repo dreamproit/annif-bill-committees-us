@@ -23,7 +23,7 @@ annif = {extras = ["nn", "omikuji", "fasttext", "yake", "stwfsa"], version = "1.
 tensorflow-cpu = "2.15.1"
 gcsfs = "2023.6.0"  # Downgrade to a compatible version
 st-files-connection = "^0.1.0"
-google-cloud-storage = "^2.17.0"
+google-cloud-storage = ">=2.17,<4.0"
 datasets = "^2.19.0"
 fsspec = "2023.6.0"  # Pin a compatible version of fsspec
 
