@@ -3,7 +3,7 @@ datasets
 scikit-learn
 streamlit==1.60.0
 annif==1.1.0
-omikuji==0.5.1
+omikuji==0.5.2
 annif[nn]
 gcsfs==2024.6.0
 st-files-connection
