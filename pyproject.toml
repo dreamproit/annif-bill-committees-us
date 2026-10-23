@@ -16,7 +16,7 @@ flake8 = "^7.0.0"
 isort = "^5.13.2"
 black = "^26.10.1"
 Flake8-pyproject = "^1.2.3"
-ipykernel = "^6.29.5"
+ipykernel = ">=6.29.5,<8.0.0"
 jupyter = "^1.1.1"
 streamlit = "^1.35.0"
 annif = {extras = ["nn", "omikuji", "fasttext", "yake", "stwfsa"], version = "1.1.0"}
